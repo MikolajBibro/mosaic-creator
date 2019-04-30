@@ -8,11 +8,11 @@ import javax.imageio.ImageIO
 fun main() {
     val thumbnailSize = 1
 
-    val inputImage = ImageIO.read(File("test.jpg"))
+    val inputImage = ImageIO.read(File("inputJpg"))
     val newImage = BufferedImage(inputImage.width, inputImage.height, BufferedImage.TYPE_INT_RGB)
     val g2d = newImage.createGraphics()
 
-    val thumbnails: List<BufferedImage> = getImagesFromDirectory(File("CAT_00"))
+    val thumbnails: List<BufferedImage> = getImagesFromDirectory(File("DirectoryName"))
     val scaledThumbnails: List<BufferedImage> = thumbnails.map { scaleImage(it, thumbnailSize) }.toList()
 
     val imageToColorMap = createImageToColorMap(scaledThumbnails)
@@ -25,7 +25,7 @@ fun main() {
         }
     }
 
-    val outputFile = File("outputFile.jpg")
+    val outputFile = File("outputJpg")
     ImageIO.write(newImage, "jpg", outputFile)
 }
 
